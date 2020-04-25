@@ -22,27 +22,24 @@ var addTwoNumbers = function(l1, l2) {
   if (!l1 && !l2) {
     return null
   }
-  if (!l1) {
-    l1 = new ListNode(0)
-  }
-  if (!l2) {
-    l2 = new ListNode(0)
-  }
+  l1 = l1 || new ListNode(0)
+  l2 = l2 || new ListNode(0)
   let sum = l1.val + l2.val
-  let diff = 0
+  let add = 0
   if (sum >= 10) {
-    sum = sum - 10
-    diff += 1
+    add = 1
+    sum = sum % 10
   }
-  const result = new ListNode(sum)
-  if (diff) {
-    if (!l1.next) {
-      l1.next = new ListNode(0)
+  if (add > 0) {
+    if (l1.next) {
+      l1.next.val += add
+    } else {
+      l1.next = new ListNode(add)
     }
-    l1.next.val += diff
   }
-  result.next = addTwoNumbers(l1.next, l2.next)
-  return result
-};
+  const newListNode = new ListNode(sum)
+  newListNode.next = addTwoNumbers(l1.next, l2.next)
+  return newListNode
+}
 // @lc code=end
 

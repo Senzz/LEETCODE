@@ -14,6 +14,19 @@
  * @param {number} target
  * @return {number[]}
  */
+var twoSum = function (nums, target) {
+  const map = {}
+
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i]
+    const nextNum = target - num    
+    if (map.hasOwnProperty(nextNum)) {
+      return [map[nextNum], i]
+    }
+    map[num] = i
+  }
+  return []
+}
 // 使用Map （65ms, 89.29%）
 // var twoSum = function (nums, target) {
 //   const list = new Map()
@@ -30,17 +43,17 @@
 
 // (60ms, 95.27%)
 // 使用object，提高效率
-var twoSum = function (nums, target) {
-  const obj = {}
-  for (let i = 0; i < nums.length; i++) {
-    const diff = target - nums[i]
-    if (obj.hasOwnProperty(diff)) {
-      return [obj[diff], i]
-    } else {
-      obj[nums[i]] = i
-    }
-  }
-  return 'not find'
-};
+// var twoSum = function (nums, target) {
+//   const obj = {}
+//   for (let i = 0; i < nums.length; i++) {
+//     const diff = target - nums[i]
+//     if (obj.hasOwnProperty(diff)) {
+//       return [obj[diff], i]
+//     } else {
+//       obj[nums[i]] = i
+//     }
+//   }
+//   return 'not find'
+// };
 // @lc code=end
 
