@@ -48,14 +48,14 @@ var numDecodings = function(s) {
   if (s[0] === '0') {
     return 0
   }
-  const dp = [1, 1]
+  const dp = [1]
   dp[-1] = 1
   for (let i = 1; i < s.length; i++) {
     if (s[i] === '0') {
       if (s[i-1] !== '1' && s[i-1] !== '2') {
         return 0
       } else {
-        // s[i-1] + s[i] 唯一编码不增加情况
+        // s[i-1] + s[i] 唯一编码不增加情况, 忽视（相当于去掉这2位数）
         // dp[i] === dp[i-2]
         dp[i] = dp[i-2]
       }
