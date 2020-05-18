@@ -71,22 +71,17 @@ var isValid = function(s) {
     const c = s[i]
     if (map[c]) {
       stack.push(c)
-      // 优化
       if (stack.length > s.length / 2) {
         return false
       }
     } else {
-      const lastStack = stack.pop()
-      if (map[lastStack] !== c) {
+      const lastC = stack.pop()
+      if (map[lastC] !== c) {
         return false
       }
     }
   }
-  if (stack.length === 0) {
-    return true
-  } else {
-    return false
-  }
+  return stack.length === 0
 };
 // @lc code=end
 
