@@ -15,17 +15,16 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  const map = {}
-
+  const map = new Map()
   for (let i = 0; i < nums.length; i++) {
     const num = nums[i]
-    const nextNum = target - num    
-    if (map.hasOwnProperty(nextNum)) {
-      return [map[nextNum], i]
+    const rest = target - num
+    if (map.has(rest)) {
+      return [map.get(rest), i]
     }
-    map[num] = i
+    map.set(num, i)
   }
-  return []
+  return null
 }
 // 使用Map （65ms, 89.29%）
 // var twoSum = function (nums, target) {
