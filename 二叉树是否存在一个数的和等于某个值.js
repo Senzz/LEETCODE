@@ -1,17 +1,17 @@
 /**
- * 二叉树是否存在一个数的和等于某个值
+ * 二叉树是否存在一个树的和等于某个值
  */
 
 
 // 第一种
 const isExist = (root, total) => {
   if (!root) {
-    return !root && total === 0
+    return total === 0
   }
-  const isLeft = isExist(root.left, total - root.value)
-  const isRight = isExist(root.right, total - root.value)
 
-  return isLeft || isRight
+  const hasLeftExist = isExist(root.left, total - root.value)
+  const hasRightExist = isExist(root.right, total - root.value)
+  return hasLeftExist || hasRightExist
 }
 
 
