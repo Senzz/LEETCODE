@@ -70,15 +70,21 @@ var isValid = function(s) {
   for (let i = 0; i < s.length; i++) {
     const c = s[i]
     if (map[c]) {
+      // left括号
       stack.push(c)
-      if (stack.length > s.length / 2) {
+      if (
+        stack.length > s.length / 2 ||
+        stack.length > s.length - i // 优化处理
+      ) {
         return false
       }
     } else {
+      // right括号
       const lastC = stack.pop()
       if (map[lastC] !== c) {
         return false
       }
+
     }
   }
   return stack.length === 0
