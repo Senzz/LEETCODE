@@ -10,25 +10,17 @@
  * @param {number} k
  * @return {number}
  */
-var timeRequiredToBuy = function(tickets, k) {
+var timeRequiredToBuy = function (tickets, k) {
   let second = 0
-  let n = tickets.length
+  const len = tickets.length
   const kTicket = tickets[k]
+  for (let i = 0; i < len; i++) {
+    const curTicket = tickets[i]
 
-  for(let i = 0; i < n; i++) {
-    const iTicket = tickets[i]
     if (i <= k) {
-      if (iTicket < kTicket) {
-        second += iTicket
-      } else {
-        second += kTicket
-      }
+      second += kTicket > curTicket ? curTicket : kTicket
     } else {
-      if (iTicket < kTicket) {
-        second += iTicket
-      } else {
-        second += (kTicket - 1)
-      }
+      second += kTicket > curTicket ? curTicket : (kTicket - 1)
     }
   }
   return second
